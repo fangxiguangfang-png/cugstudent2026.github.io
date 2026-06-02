@@ -1,0 +1,700 @@
+﻿<!DOCTYPE html>
+<!-- ============================================================
+     此行告诉浏览器：这是一个 HTML5 文档（最新版本）
+     所有的 HTML 代码都要放在 <html> 和 </html> 之间
+     ============================================================ -->
+<html lang="zh-CN">
+<!-- lang="zh-CN" 表示页面内容是简体中文 -->
+
+<head>
+    <!-- ============================================================
+         <head> 标签存放的是"网页的配置信息"，
+         比如标题、编码方式、样式等，这些内容不会直接显示在页面上
+         ============================================================ -->
+
+    <meta charset="UTF-8">
+    <!-- 告诉浏览器使用 UTF-8 编码，支持中文、日文等所有文字 -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 让网页在手机上也显示得好看（响应式设计） -->
+
+    <title>中国地质大学（武汉） - 欢迎了解</title>
+    <!-- <title> 是网页的标题，会显示在浏览器标签页上 -->
+
+    <!-- ============================================================
+         下面这部分是 CSS（层叠样式表），用来控制网页的美观，
+         比如颜色、大小、位置、动画等。
+         ============================================================ -->
+    <style>
+        /* ---------- 全局基础样式 ---------- */
+        /* 这里的设置会影响整个页面的所有元素 */
+
+        /* 先清除浏览器的默认边距，让页面从左上角开始 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* box-sizing: border-box 让 padding 和边框算在宽高内，更好控制大小 */
+        }
+
+        /* 设置页面的整体风格 */
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+            /* font-family 设置字体，按顺序依次尝试 */
+            background-color: #f5f7fa;
+            /* 背景颜色：浅灰蓝色 */
+            color: #333;
+            /* 文字颜色：深灰色（比纯黑色更柔和） */
+            line-height: 1.8;
+            /* 行高 1.8 倍，让文字行与行之间不那么挤 */
+        }
+
+        /* ========== 第一部分：顶部导航栏 ========== */
+        /* 导航栏固定在页面顶部，滚动时始终可见 */
+
+        .navbar {
+            position: fixed;
+            /* fixed 固定定位，不随页面滚动 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            /* 宽度占满整个屏幕 */
+            background-color: rgba(0, 66, 37, 0.95);
+            /* 地大代表性绿色，半透明 */
+            padding: 12px 40px;
+            /* padding 内边距：上下12px，左右40px */
+            display: flex;
+            /* flex 弹性布局，让导航项水平排列 */
+            justify-content: space-between;
+            /* 左右两端对齐 */
+            align-items: center;
+            /* 垂直居中 */
+            z-index: 1000;
+            /* z-index 层级，数值越大越靠前 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            /* 底部阴影，产生立体感 */
+        }
+
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+            /* 字体加粗 */
+            color: #fff;
+            /* 白色文字 */
+        }
+
+        .navbar .logo span {
+            color: #ffd700;
+            /* 金色点缀 */
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+            /* 去掉列表前面的圆点 */
+            gap: 28px;
+            /* 每个链接之间的间距 */
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            /* 去掉下划线 */
+            font-size: 16px;
+            transition: color 0.3s;
+            /* transition 过渡动画，让颜色变化更平滑 */
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ffd700;
+            /* 鼠标悬停时变为金色 */
+        }
+
+        /* ========== 第二部分：大屏幕横幅（Hero 区域） ========== */
+        /* 这是用户打开页面后看到的第一印象 */
+
+        .hero {
+            height: 100vh;
+            /* vh 是视口高度单位，100vh = 整个屏幕高度 */
+            background: linear-gradient(135deg, #004225, #006b3e, #004225);
+            /* 渐变背景 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 900;
+            /* 最粗的字体 */
+            margin-bottom: 16px;
+            letter-spacing: 4px;
+            /* 字间距，让标题更舒展 */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            /* 文字阴影 */
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            /* 最大宽度，防止文字太长不易读 */
+            opacity: 0.9;
+            /* 透明度 0.9，稍微柔和一点 */
+            margin-bottom: 30px;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            /* 行内块级元素，既可以设宽高又可以和文字在一行 */
+            padding: 14px 40px;
+            background-color: #ffd700;
+            color: #004225;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            /* 圆角边框，产生胶囊形状 */
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .hero .btn:hover {
+            transform: translateY(-3px);
+            /* 鼠标悬停时向上移动 3px */
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        /* ========== 第三部分：通用板块样式 ========== */
+        /* 下面的几个板块（关于、历史、院系等）共用这套样式 */
+
+        .section {
+            padding: 80px 20px;
+            /* 上下内边距80px，左右20px */
+        }
+
+        .section:nth-child(even) {
+            /* nth-child(even) 选择偶数个的 .section，交替背景色 */
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1100px;
+            /* 内容最大宽度 1100px，太宽了不易阅读 */
+            margin: 0 auto;
+            /* margin: 0 auto 让元素水平居中 */
+        }
+
+        .section-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 12px;
+            color: #004225;
+            position: relative;
+            /* 相对定位，为下面的伪元素做参考 */
+        }
+
+        /* 标题下面的金色装饰线（用伪元素 ::after 实现） */
+        .section-title::after {
+            content: "";
+            /* 伪元素必须有 content 属性 */
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #ffd700;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+
+        /* ========== 第四部分：关于学校 ========== */
+
+        .about-content {
+            display: flex;
+            /* flex 弹性布局，让两个 div 并排 */
+            gap: 50px;
+            /* 两个元素之间的间距 */
+            align-items: center;
+            /* 垂直居中 */
+            flex-wrap: wrap;
+            /* 屏幕太小时自动换行 */
+        }
+
+        .about-content .text {
+            flex: 1;
+            /* flex: 1 让该元素占据剩余空间 */
+            min-width: 280px;
+            /* 最小宽度，防止被挤压得太小 */
+        }
+
+        .about-content .text p {
+            margin-bottom: 16px;
+            font-size: 16px;
+            text-indent: 2em;
+            /* 首行缩进 2 个字符，像书本一样 */
+        }
+
+        .about-content .image-placeholder {
+            flex: 1;
+            min-width: 280px;
+            height: 350px;
+            background: linear-gradient(135deg, #004225, #006b3e);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+            box-shadow: 0 8px 30px rgba(0, 66, 37, 0.3);
+        }
+
+        /* ========== 第五部分：数据统计卡片 ========== */
+
+        .stats-grid {
+            display: grid;
+            /* grid 网格布局，比 flex 更适合做表格状排列 */
+            grid-template-columns: repeat(4, 1fr);
+            /* 4列等宽 */
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .stat-card .number {
+            font-size: 40px;
+            font-weight: bold;
+            color: #004225;
+        }
+
+        .stat-card .label {
+            font-size: 15px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* ========== 第六部分：历史时间线 ========== */
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        /* 时间线中间的那条竖线 */
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #004225;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 36px;
+            padding-left: 40px;
+        }
+
+        /* 时间线上的圆点 */
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -28px;
+            /* 相对于父元素的 padding-left 调整位置 */
+            top: 6px;
+            width: 18px;
+            height: 18px;
+            background: #ffd700;
+            border: 4px solid #004225;
+            border-radius: 50%;
+        }
+
+        .timeline-item .year {
+            font-size: 22px;
+            font-weight: bold;
+            color: #004225;
+        }
+
+        .timeline-item .desc {
+            font-size: 15px;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        /* ========== 第七部分：院系/学科卡片 ========== */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            /* auto-fit 自动适应列数，minmax 保证最小 280px */
+            gap: 24px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #004225;
+            /* 左侧加一条绿色竖线作为装饰 */
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #004225;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* ========== 第八部分：校园生活图片画廊（占位图） ========== */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            height: 200px;
+            background: linear-gradient(135deg, #ccc, #999);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: default;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            /* scale 放大效果 */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 给每个画廊项目不同的渐变背景色 */
+        .gallery-item:nth-child(1) {
+            background: linear-gradient(135deg, #004225, #2d7d46);
+        }
+        .gallery-item:nth-child(2) {
+            background: linear-gradient(135deg, #1a5276, #2980b9);
+        }
+        .gallery-item:nth-child(3) {
+            background: linear-gradient(135deg, #7d3c98, #a569bd);
+        }
+        .gallery-item:nth-child(4) {
+            background: linear-gradient(135deg, #b7950b, #d4ac0d);
+        }
+        .gallery-item:nth-child(5) {
+            background: linear-gradient(135deg, #ba4a00, #e67e22);
+        }
+        .gallery-item:nth-child(6) {
+            background: linear-gradient(135deg, #922b21, #e74c3c);
+        }
+
+        /* ========== 第九部分：页脚 ========== */
+
+        .footer {
+            background-color: #1a1a2e;
+            color: #ccc;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== 第十部分：响应式设计 ========== */
+        /* 当屏幕宽度小于 768px（平板/手机）时，调整布局 */
+
+        @media (max-width: 768px) {
+            /* 导航栏改为纵向排列 */
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 16px;
+            }
+
+            .navbar .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+                /* 手机上标题小一些 */
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 50px 16px;
+            }
+
+            /* 4列改为2列 */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* 3列改为2列，再小就是1列 （由 auto-fit 自动控制） */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+    <!-- ========== CSS 部分结束 ========== -->
+</head>
+
+<body>
+
+    <!-- ============================================================
+         下面开始是页面的"内容"部分，所有展示在浏览器中的东西
+         都要放在 <body> 和 </body> 之间
+         ============================================================ -->
+
+    <!-- ==================== 1. 顶部导航栏 ==================== -->
+    <!-- <header> 表示页头，<nav> 表示导航 -->
+    <header>
+        <nav class="navbar">
+            <!-- class 是 CSS 类名，对应上面 .navbar 的样式 -->
+            <div class="logo">🌍 <span>中国地质大学</span>（武汉）</div>
+            <ul class="nav-links">
+                <!-- <ul> 无序列表，<li> 列表项，<a> 超链接 -->
+                <li><a href="#about">学校概况</a></li>
+                <li><a href="#history">历史沿革</a></li>
+                <li><a href="#departments">院系设置</a></li>
+                <li><a href="#campus">校园生活</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ==================== 2. 大横幅（Hero） ==================== -->
+    <section class="hero" id="home">
+        <!-- <section> 表示页面中的一个区域 -->
+        <h1>中国地质大学（武汉）</h1>
+        <!-- <h1> ~ <h6> 是标题，h1 最大，h6 最小 -->
+        <p>一所享有盛誉的教育部直属全国重点大学，<br>
+            <!-- <br> 是换行标签 -->
+            国家"211工程"、"双一流"建设高校，<br>
+            被誉为"中国地球科学的最高学府"。</p>
+        <a href="#about" class="btn">了解详情 ↓</a>
+        <!-- <a> 超链接，href="#about" 跳转到 id="about" 的元素 -->
+    </section>
+
+    <!-- ==================== 3. 学校概况 ==================== -->
+    <section class="section" id="about">
+        <div class="container">
+            <!-- <h2> 是二级标题，一个页面通常只有一个 h1，可以有多个 h2 -->
+            <h2 class="section-title">学校概况</h2>
+            <p class="section-subtitle">了解地大 · 从这里开始</p>
+
+            <div class="about-content">
+                <!-- flex 布局让文字和图片并排 -->
+                <div class="text">
+                    <p><strong>中国地质大学（武汉）</strong>是教育部直属的全国重点大学，是国家批准设立研究生院的大学，是国家"211工程"、国家"双一流"建设高校。学校创建于1952年，前身是北京地质学院，1970年迁至武汉，1987年更名为中国地质大学。</p>
+                    <!-- <strong> 表示重要文字，默认加粗显示 -->
+                    <p>学校以地球科学为主要特色，理、工、文、管、经、法、教、艺等多学科协调发展。现有教职员工3300余人，全日制在校学生3万余人。学校拥有多个国家重点实验室和工程技术研究中心，在地质学、地质资源与地质工程等领域处于国内领先、国际一流水平。</p>
+                    <p>学校位于美丽的东湖之畔、南望山麓，占地面积约1700亩。校园环境优美，四季分明，是学习和科研的理想场所。</p>
+                </div>
+                <div class="image-placeholder">
+                    🏛️ 南望山校区
+                </div>
+            </div>
+
+            <!-- 数据统计卡片 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">1952</div>
+                    <div class="label">建校年份</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">3万+</div>
+                    <div class="label">在校学生</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">3300+</div>
+                    <div class="label">教职员工</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">70+</div>
+                    <div class="label">本科专业</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. 历史沿革 ==================== -->
+    <section class="section" id="history">
+        <div class="container">
+            <h2 class="section-title">历史沿革</h2>
+            <p class="section-subtitle">七十余载风雨历程</p>
+
+            <div class="timeline">
+                <!-- 时间线的每一项 -->
+                <div class="timeline-item">
+                    <div class="year">1952年</div>
+                    <div class="desc">北京大学、清华大学、天津大学等校的地质系（科）合并组建北京地质学院。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1970年</div>
+                    <div class="desc">学校迁至湖北省武汉市，更名为湖北地质学院。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1987年</div>
+                    <div class="desc">更名为中国地质大学，武汉、北京两地办学。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">1997年</div>
+                    <div class="desc">进入国家"211工程"重点建设高校行列。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2017年</div>
+                    <div class="desc">入选国家"双一流"建设高校名单。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2022年</div>
+                    <div class="desc">庆祝建校70周年，开启建设地球科学领域世界一流大学新征程。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. 院系设置 ==================== -->
+    <section class="section" id="departments">
+        <div class="container">
+            <h2 class="section-title">院系设置</h2>
+            <p class="section-subtitle">学科门类齐全 · 特色鲜明</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🌍 地球科学学院</h3>
+                    <p>国家级一流本科专业，涵盖地质学、地球化学等方向，拥有国家级重点学科和一流师资队伍。</p>
+                </div>
+                <div class="card">
+                    <h3>⛏️ 资源学院</h3>
+                    <p>在矿产普查与勘探、油气地质等领域具有突出优势，为国家资源战略培养大量人才。</p>
+                </div>
+                <div class="card">
+                    <h3>🔬 工程学院</h3>
+                    <p>涵盖地质工程、土木工程、安全工程等专业，注重理论与实践相结合。</p>
+                </div>
+                <div class="card">
+                    <h3>💻 计算机学院</h3>
+                    <p>拥有计算机科学与技术、软件工程等专业，在地学信息化、遥感数据处理等方面特色鲜明。</p>
+                </div>
+                <div class="card">
+                    <h3>📊 经济管理学院</h3>
+                    <p>设有经济学、管理学等多个本科专业，培养复合型商业人才。</p>
+                </div>
+                <div class="card">
+                    <h3>🌐 更多学院</h3>
+                    <p>还有环境学院、海洋学院、珠宝学院、艺术与传媒学院等共22个学院（部），选择丰富多样。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. 校园生活 ==================== -->
+    <section class="section" id="campus">
+        <div class="container">
+            <h2 class="section-title">校园生活</h2>
+            <p class="section-subtitle">丰富多彩的大学生活等你来体验</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">📚 图书馆</div>
+                <div class="gallery-item">🏫 教学大楼</div>
+                <div class="gallery-item">🏛️ 逸夫博物馆</div>
+                <div class="gallery-item">🌳 校园风光</div>
+                <div class="gallery-item">🏟️ 体育场馆</div>
+                <div class="gallery-item">🍜 食堂美食</div>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center; font-size: 15px; color: #555;">
+                <p>🌟 地大校园位于东湖之滨，南望山脚下，环境优美，学习氛围浓厚。</p>
+                <p>🏠 宿舍配备空调、热水，食堂种类繁多，满足来自全国各地同学的口味。</p>
+                <p>🎉 学校拥有上百个学生社团，从学术到体育、文艺到公益，总有一款适合你！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 7. 高考寄语 ==================== -->
+    <section class="section" style="background: linear-gradient(135deg, #004225, #006b3e); color: #fff;">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-size: 32px; margin-bottom: 20px; color: #ffd700;">致高考学子</h2>
+            <!-- style 是"内联样式"，直接写在标签上，优先级最高 -->
+            <p style="font-size: 18px; max-width: 700px; margin: 0 auto; line-height: 2;">
+                亲爱的同学，恭喜你完成了高考这一重要挑战！<br>
+                无论成绩如何，这都是你人生中一段宝贵的经历。<br><br>
+                中国地质大学（武汉）期待你的加入！<br>
+                在这里，你将探索地球的奥秘，结识志同道合的伙伴，<br>
+                开启属于你的精彩大学生活！<br><br>
+                <strong style="font-size: 22px; color: #ffd700;">🎯 2025年，我们在南望山下等你！</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- ==================== 8. 联系我们/页脚 ==================== -->
+    <footer class="footer" id="contact">
+        <!-- <footer> 表示页脚 -->
+        <div class="container">
+            <p><strong>中国地质大学（武汉）</strong></p>
+            <p>地址：湖北省武汉市洪山区鲁磨路388号 &nbsp;|&nbsp; 邮编：430074</p>
+            <!-- &nbsp; 是不换行空格，多个空格在 HTML 中会被合并成一个，用 &nbsp; 可以保留 -->
+            <p>招生咨询：027-67883304 &nbsp;|&nbsp; 学校官网：
+                <a href="https://www.cug.edu.cn" target="_blank">www.cug.edu.cn</a>
+                <!-- target="_blank" 表示在新标签页中打开链接 -->
+            </p>
+            <p style="margin-top: 20px; color: #888; font-size: 12px;">
+                © 2025 中国地质大学（武汉）介绍网站 &nbsp;|&nbsp; 本项目仅用于学习交流
+            </p>
+        </div>
+    </footer>
+
+</body>
+<!-- ========== </body> 和 </html> 结束整个页面 ========== -->
+</html>
